@@ -1,6 +1,8 @@
+Comecei no dia 08.10.2020 ou no dia 09.10.2020
 # Desafio Semana #1
 
 ```js
+
 // Declarar uma variável chamada `myvar`, sem valor.
 var myvar;
 
