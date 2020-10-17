@@ -15,7 +15,7 @@ estar na ordem em que eles aparecem na tabela no momento da solução desse
 desafio.
 */
 
-var teams = ['Náutico', 'Central', 'Porto', 'Salgueiro', 'Sport']
+var teams = ['Náutico', 'Central', 'Porto', 'Salgueiro', 'Sport'];
 console.log( 'Times que estão participando do campeonato:', teams );
 
 /*
@@ -37,22 +37,22 @@ Crie uma função chamada `showTeamPosition` com as seguintes características:
 function showTeamPosition(n) {
 	switch (n) {
 		case 0:
-		console.log("O time que está em 1º lugar é o " + teams[0] + ".")
+		console.log("O time que está em 1º lugar é o " + teams[0] + ".");
 		break;
 		case 1:
-		console.log("O time que está em 2º lugar é o " + teams[1] + ".")
+		console.log("O time que está em 2º lugar é o " + teams[1] + ".");
 		break;
 		case 2:
-		console.log("O time que está em 3º lugar é o " + teams[2] + ".")
+		console.log("O time que está em 3º lugar é o " + teams[2] + ".");
 		break;
 		case 3:
-		console.log("O time que está em 4º lugar é o " + teams[3] + ".")
+		console.log("O time que está em 4º lugar é o " + teams[3] + ".");
 		break;
 		case 4:
-		console.log("O time que está em 5º lugar é o " + teams[4] + ".")
+		console.log("O time que está em 5º lugar é o " + teams[4] + ".");
 		break;
 		default:
-		console.log('Não temos a informação do time que está nessa posição.')
+		console.log('Não temos a informação do time que está nessa posição.');
 	}
 }
 /*
