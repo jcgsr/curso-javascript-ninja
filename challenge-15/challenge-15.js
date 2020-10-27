@@ -1,4 +1,7 @@
+(function () { 
 /*
+
+27.10.2020
 Envolva todo o código desse desafio em uma IIFE.
 Crie um arquivo chamado index.html e adicione esse script ao HTML.
 */
@@ -22,6 +25,26 @@ as seguintes características:
   que será instanciado.
 */
 // ?
+  function Person (name, lastName, age) {
+    this.name = name;
+    this.lastName = lastName;
+    this.age = age;
+
+    this.getFullName = function getFullName() {
+      return this.name + " " + this.lastName;
+    };
+
+    this.getAge = function getAge() {
+      return this.age
+    };
+
+    this.addAge = function addAge() {
+      this.age += arguments[0];
+      return this;
+    }  
+  }
+
+    
 
 /*
 Crie 3 novos objetos usando o construtor acima. Os objetos serão novas
@@ -31,20 +54,33 @@ Mostre as 3 novas pessoas criadas no console (Um console.log por pessoa).
 */
 console.log( 'Novas pessoas criadas à partir de Person:' );
 // ?
+var p1 = new Person("Diana", "Rocha", 2);
+console.log(p1)
+
+var p2 = new Person("Josias", "Guerra", 75);
+console.log(p2)
+
+var p3 = new Person("Ercilia", "Cabral", 73);
+console.log(p3)
+
 
 /*
 Mostre no console o nome completo de cada pessoa.
 */
 console.log( '\nNomes das pessoas:' );
 // ?
-
+console.log(p1.getFullName())
+console.log(p2.getFullName())
+console.log(p3.getFullName())
 /*
 Mostre no console as idades de cada pessoa, com a frase:
 - "[NOME COMPLETO] tem [IDADE] anos."
 */
 console.log( '\nIdade das pessoas:' );
 // ?
-
+console.log(p1.getFullName() + ' tem ' + p1.getAge() + ' anos.')
+console.log(p2.getFullName() + ' tem ' + p2.getAge() + ' anos.')
+console.log(p3.getFullName() + ' tem ' + p3.getAge() + ' anos.')
 /*
 Adicione alguns anos à cada pessoa, e mostre no console a nova idade de
 cada um. A frase deverá ser no formato:
@@ -52,3 +88,9 @@ cada um. A frase deverá ser no formato:
 */
 console.log( '\nNova idade das pessoas:' );
 // ?
+p1.addAge(1)
+console.log(p1.getFullName() + ' agora tem ' + p1.getAge() + ' anos.')
+console.log(p2.getFullName() + ' agora tem ' + p2.addAge(1).getAge() + ' anos.')
+console.log(p3.getFullName() + ' agora tem ' + p3.addAge(1).getAge() + ' anos.')
+
+}());
