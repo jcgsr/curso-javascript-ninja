@@ -1,4 +1,6 @@
-/*
+(function (window, document) {
+  "use strict";
+  /*
 Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
 As regras são:
 
@@ -23,3 +25,73 @@ multiplicação (x), então no input deve aparecer "1+2x".
 input;
 - Ao pressionar o botão "CE", o input deve ficar zerado.
 */
+  let $visor = document.querySelector("[data-js='visor']");
+  let $buttonsNumbers = document.querySelectorAll("[data-js='button-number']");
+  let $buttonsOperations = document.querySelectorAll(
+    "[data-js='button-operation']"
+  );
+  let $buttonCE = document.querySelector('[data-js="button-CE"]');
+  let $buttonEqual = document.querySelector('[data-js="button-equal"]');
+
+  Array.prototype.forEach.call($buttonsNumbers, function (button) {
+    button.addEventListener("click", handleClickNumber, false);
+  });
+
+  Array.prototype.forEach.call($buttonsOperations, function (button) {
+    button.addEventListener("click", handleClickOperation, false);
+  });
+
+  $buttonCE.addEventListener("click", handleClickCE, false);
+  $buttonEqual.addEventListener("click", handleClickEqual, false);
+
+  function handleClickNumber() {
+    $visor.value += this.value;
+  }
+
+  function handleClickOperation() {
+    $visor.value = removeLastItemIfItIsAnOperator($visor.value);
+    $visor.value += this.value;
+  }
+
+  function handleClickCE() {
+    $visor.value = 0;
+  }
+
+  function isLastItemAnOperation(number) {
+    let operations = ["+", "-", "x", "÷"];
+    let lastItem = number.split("").pop();
+    return operations.some(function (operator) {
+      return operator === lastItem;
+    });
+  }
+
+  function removeLastItemIfItIsAnOperator(number) {
+    if (isLastItemAnOperation(number)) {
+      return number.slice(0, -1);
+    }
+    return number;
+  }
+  function handleClickEqual() {
+    $visor.value = removeLastItemIfItIsAnOperator($visor.value);
+    let allValues = $visor.value.match(/\d+[+x÷-]?/g);
+    let result = allValues.reduce(function (accumulated, actual) {
+      let firstValue = accumulated.slice(0, -1);
+      let operator = accumulated.split("").pop();
+      let lastValue = removeLastItemIfItIsAnOperator(actual);
+      let lastOperator = isLastItemAnOperation(actual)
+        ? actual.split("").pop()
+        : "";
+      switch (operator) {
+        case "+":
+          return +firstValue + +lastValue + lastOperator;
+        case "-":
+          return +firstValue - +lastValue + lastOperator;
+        case "x":
+          return +firstValue * +lastValue + lastOperator;
+        case "÷":
+          return +firstValue / +lastValue + lastOperator;
+      }
+    });
+    $visor.value = result;
+  }
+})(window, document);
